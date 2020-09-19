@@ -10,13 +10,6 @@ const {
 
 const main = async () => {
   const { data } = await readFile();
-  // Filter data by index
-  filterIndex(data, [0, 12, 13, 20, 28, 24]);
-
-  // Filter empty data in the sheet
-  filterEmptyData(data, 2);
-
-  // Filterdata by particular field
   const fieldsToFilter = [
     "Month 1 avg balance",
     "Month 2 avg balance",
@@ -33,7 +26,11 @@ const main = async () => {
     "Comments",
   ];
   const res = filterData(data, [
+    // Filter data by index
+    filterIndex(data, [0, 12, 13, 20, 28, 24]),
+    // Filter empty data in the sheet
     filterEmptyData(),
+    // Filterdata by particular field
     filterField(fieldsToFilter),
   ]);
   writeToFile(res);
